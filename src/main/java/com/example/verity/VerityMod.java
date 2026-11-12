@@ -46,6 +46,7 @@ public class VerityMod {
             () -> new BlockItem(CARDBOARD_BOX.get(), new Item.Properties()));
 
     public VerityMod() {
+        AsItems.init();
         IEventBus modBus = FMLJavaModLoadingContext.get().getModEventBus();
         ENTITY_TYPES.register(modBus);
         BLOCKS.register(modBus);
@@ -64,6 +65,9 @@ public class VerityMod {
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.COMBAT) {
+            AsItems.ALL.forEach(event::accept);
         }
     }
 }

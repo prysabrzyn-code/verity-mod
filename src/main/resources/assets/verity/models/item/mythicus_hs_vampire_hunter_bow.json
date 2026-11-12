@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "verity:item/mythicus_hs_vampire_hunter_bow"
+  }
+}

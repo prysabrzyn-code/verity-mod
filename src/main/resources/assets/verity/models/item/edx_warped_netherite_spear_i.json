@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "verity:item/edx_warped_netherite_spear_i"
+  }
+}

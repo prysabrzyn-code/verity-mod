@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "verity:item/nicothekid_piglin_war_hammer"
+  }
+}

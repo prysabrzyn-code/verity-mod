@@ -5,7 +5,7 @@ license = "All rights reserved"
 [[mods]]
 modId = "verity"
 version = "${version}"
-displayName = "Verity"
+displayName = "Verity API"
 description = '''
 Adds the Verity smiley mob that follows players around. Spawn it with the Verity Spawn Egg.
 '''

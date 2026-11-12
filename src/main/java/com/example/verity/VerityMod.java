@@ -38,9 +38,9 @@ public class VerityMod {
     public static final RegistryObject<Item> VERITY_SPAWN_EGG = ITEMS.register("verity_spawn_egg",
             () -> new ForgeSpawnEggItem(VERITY, 0xFFD400, 0x3B2A00, new Item.Properties()));
 
-    // Cardboard box block, textured from the user's photo
+    // Cardboard box block: right-click to open it and Verity pops out
     public static final RegistryObject<Block> CARDBOARD_BOX = BLOCKS.register("cardboard_box",
-            () -> new Block(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+            () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
     public static final RegistryObject<Item> CARDBOARD_BOX_ITEM = ITEMS.register("cardboard_box",
             () -> new BlockItem(CARDBOARD_BOX.get(), new Item.Properties()));

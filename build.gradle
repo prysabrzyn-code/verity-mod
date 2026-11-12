@@ -1,0 +1,44 @@
+plugins {
+    id 'net.minecraftforge.gradle' version '[6.0.16,6.2)'
+}
+
+group = 'com.example'
+version = '1.0.0'
+archivesBaseName = 'verity'
+
+java {
+    toolchain.languageVersion = JavaLanguageVersion.of(17)
+}
+
+minecraft {
+    mappings channel: 'official', version: '1.20.1'
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    minecraft 'net.minecraftforge:forge:1.20.1-47.2.0'
+}
+
+tasks.named('processResources') {
+    inputs.property 'version', project.version
+    filesMatching('META-INF/mods.toml') {
+        expand 'version': project.version
+    }
+}
+
+jar {
+    manifest {
+        attributes([
+            'Specification-Title'     : 'verity',
+            'Specification-Vendor'    : 'verity',
+            'Specification-Version'   : '1',
+            'Implementation-Title'    : project.name,
+            'Implementation-Version'  : project.jar.archiveVersion,
+            'Implementation-Vendor'   : 'verity',
+            'Implementation-Timestamp': new Date().format("yyyy-MM-dd'T'HH:mm:ssZ")
+        ])
+    }
+}

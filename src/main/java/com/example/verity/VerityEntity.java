@@ -1,5 +1,11 @@
 package com.example.verity;
 
+import net.minecraft.network.chat.Component;
+import net.minecraft.server.MinecraftServer;
+import net.minecraft.server.level.ServerLevel;
+import net.minecraft.world.InteractionHand;
+import net.minecraft.world.InteractionResult;
+import java.util.Optional;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.Mob;
 import net.minecraft.world.entity.PathfinderMob;
@@ -35,6 +41,27 @@ public class VerityEntity extends PathfinderMob {
         this.goalSelector.addGoal(2, new RandomStrollGoal(this, 0.8D));
         this.goalSelector.addGoal(3, new LookAtPlayerGoal(this, Player.class, 8.0F));
         this.goalSelector.addGoal(4, new RandomLookAroundGoal(this));
+    }
+
+    /** Right-click Verity to hear a short line from an OpenRouter model. */
+    @Override
+    public InteractionResult mobInteract(Player player, InteractionHand hand) {
+        if (!(this.level() instanceof ServerLevel serverLevel) || hand != InteractionHand.MAIN_HAND) {
+            return InteractionResult.PASS;
+        }
+        Optional<String> key = OpenRouterClient.readApiKey();
+        if (key.isEmpty()) {
+            player.sendSystemMessage(Component.literal(
+                    "<Verity> No OpenRouter key found. Put it in config/verity-openrouter.txt"));
+            return InteractionResult.SUCCESS;
+        }
+        MinecraftServer server = serverLevel.getServer();
+        OpenRouterClient.ask(key.get(),
+                        "You are Verity, a friendly yellow smiley ball creature in Minecraft. "
+                                + "Reply to a player in one short, cheerful sentence in Persian.")
+                .thenAccept(reply -> server.execute(
+                        () -> player.sendSystemMessage(Component.literal("<Verity> " + reply))));
+        return InteractionResult.SUCCESS;
     }
 
     /** Walks toward the nearest player when they are farther than stopDistance. */

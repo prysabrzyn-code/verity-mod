@@ -2,6 +2,8 @@ package com.example.verity;
 
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
+import net.minecraft.world.effect.MobEffects;
+import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.BlockItem;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
@@ -50,6 +52,23 @@ public class VerityMod {
     public static final RegistryObject<Item> SHIFT_WATCH = ITEMS.register("shift_watch",
             () -> new ShiftWatchItem(new Item.Properties()));
 
+    public static final RegistryObject<EntityType<AshwalkerEntity>> ASHWALKER = ENTITY_TYPES.register("ashwalker",
+            () -> EntityType.Builder.of(AshwalkerEntity::new, MobCategory.MONSTER)
+                    .sized(0.6F, 1.95F)
+                    .build("ashwalker"));
+
+    public static final RegistryObject<Item> ASHWALKER_SPAWN_EGG = ITEMS.register("ashwalker_spawn_egg",
+            () -> new ForgeSpawnEggItem(ASHWALKER, 0x4A5A4A, 0xE8731A, new Item.Properties()));
+
+    public static final RegistryObject<Item> GLOW_SHARD = ITEMS.register("glow_shard",
+            () -> new ArtifactItem(new Item.Properties(), MobEffects.MOVEMENT_SPEED, MobEffects.NIGHT_VISION));
+
+    public static final RegistryObject<Item> EMBER_CORE = ITEMS.register("ember_core",
+            () -> new ArtifactItem(new Item.Properties(), MobEffects.DAMAGE_BOOST, MobEffects.FIRE_RESISTANCE));
+
+    public static final RegistryObject<Item> FROZEN_EYE = ITEMS.register("frozen_eye",
+            () -> new ArtifactItem(new Item.Properties(), MobEffects.REGENERATION, MobEffects.DAMAGE_RESISTANCE));
+
     public static final RegistryObject<Block> CARDBOARD_BOX = BLOCKS.register("cardboard_box",
             () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
@@ -69,15 +88,22 @@ public class VerityMod {
     private void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(VERITY.get(), VerityEntity.createAttributes().build());
         event.put(GLOOMKIN.get(), GloomkinEntity.createAttributes().build());
+        event.put(ASHWALKER.get(), Zombie.createAttributes().build());
     }
 
     private void onBuildCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(VERITY_SPAWN_EGG);
             event.accept(GLOOMKIN_SPAWN_EGG);
+            event.accept(ASHWALKER_SPAWN_EGG);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
+            event.accept(GLOW_SHARD);
+            event.accept(EMBER_CORE);
+            event.accept(FROZEN_EYE);
         }
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(SHIFT_WATCH);

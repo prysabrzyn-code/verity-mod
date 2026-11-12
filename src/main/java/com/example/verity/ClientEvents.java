@@ -18,5 +18,6 @@ public class ClientEvents {
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(VerityMod.VERITY.get(), VerityRenderer::new);
         event.registerEntityRenderer(VerityMod.GLOOMKIN.get(), GloomkinRenderer::new);
+        event.registerEntityRenderer(VerityMod.ASHWALKER.get(), AshwalkerRenderer::new);
     }
 }

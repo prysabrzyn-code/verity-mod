@@ -85,5 +85,10 @@
   "item.verity.dk_volcano_sword": "Volcano Sword",
   "entity.verity.gloomkin": "Gloomkin",
   "item.verity.gloomkin_spawn_egg": "Gloomkin Spawn Egg",
-  "item.verity.shift_watch": "Shift Watch"
+  "item.verity.shift_watch": "Shift Watch",
+  "entity.verity.ashwalker": "Ashwalker",
+  "item.verity.ashwalker_spawn_egg": "Ashwalker Spawn Egg",
+  "item.verity.glow_shard": "Glow Shard",
+  "item.verity.ember_core": "Ember Core",
+  "item.verity.frozen_eye": "Frozen Eye"
 }

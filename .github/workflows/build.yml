@@ -32,9 +32,12 @@ jobs:
           name: verity-jar
           path: build/libs/*.jar
 
-      - name: Create release for tag
-        if: startsWith(github.ref, 'refs/tags/')
+      - name: Publish release with jar
+        if: github.ref == 'refs/heads/main' || startsWith(github.ref, 'refs/tags/')
         uses: softprops/action-gh-release@v2
         with:
+          tag_name: build-${{ github.run_number }}
+          name: Verity build ${{ github.run_number }}
           files: build/libs/*.jar
+          prerelease: true
           generate_release_notes: true

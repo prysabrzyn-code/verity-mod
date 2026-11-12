@@ -47,6 +47,9 @@ public class VerityMod {
     public static final RegistryObject<Item> GLOOMKIN_SPAWN_EGG = ITEMS.register("gloomkin_spawn_egg",
             () -> new ForgeSpawnEggItem(GLOOMKIN, 0x3A2A4A, 0xFF1A1A, new Item.Properties()));
 
+    public static final RegistryObject<Item> SHIFT_WATCH = ITEMS.register("shift_watch",
+            () -> new ShiftWatchItem(new Item.Properties()));
+
     public static final RegistryObject<Block> CARDBOARD_BOX = BLOCKS.register("cardboard_box",
             () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
@@ -75,6 +78,9 @@ public class VerityMod {
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);
+        }
+        if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
+            event.accept(SHIFT_WATCH);
         }
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             AsItems.ALL.forEach(event::accept);

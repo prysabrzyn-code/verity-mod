@@ -39,6 +39,14 @@ public class VerityMod {
             () -> new ForgeSpawnEggItem(VERITY, 0xFFD400, 0x3B2A00, new Item.Properties()));
 
     // Cardboard box block: right-click to open it and Verity pops out
+    public static final RegistryObject<EntityType<GloomkinEntity>> GLOOMKIN = ENTITY_TYPES.register("gloomkin",
+            () -> EntityType.Builder.of(GloomkinEntity::new, MobCategory.MONSTER)
+                    .sized(0.8F, 2.0F)
+                    .build("gloomkin"));
+
+    public static final RegistryObject<Item> GLOOMKIN_SPAWN_EGG = ITEMS.register("gloomkin_spawn_egg",
+            () -> new ForgeSpawnEggItem(GLOOMKIN, 0x3A2A4A, 0xFF1A1A, new Item.Properties()));
+
     public static final RegistryObject<Block> CARDBOARD_BOX = BLOCKS.register("cardboard_box",
             () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
 
@@ -57,11 +65,13 @@ public class VerityMod {
 
     private void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(VERITY.get(), VerityEntity.createAttributes().build());
+        event.put(GLOOMKIN.get(), GloomkinEntity.createAttributes().build());
     }
 
     private void onBuildCreativeTabs(BuildCreativeModeTabContentsEvent event) {
         if (event.getTabKey() == CreativeModeTabs.SPAWN_EGGS) {
             event.accept(VERITY_SPAWN_EGG);
+            event.accept(GLOOMKIN_SPAWN_EGG);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);

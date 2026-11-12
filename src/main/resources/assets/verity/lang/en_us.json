@@ -82,5 +82,7 @@
   "item.verity.dk_sickle_of_fatality": "Sickle Of Fatality",
   "item.verity.dk_sword_of_fatality": "Sword Of Fatality",
   "item.verity.dk_vendaga": "Vendaga",
-  "item.verity.dk_volcano_sword": "Volcano Sword"
+  "item.verity.dk_volcano_sword": "Volcano Sword",
+  "entity.verity.gloomkin": "Gloomkin",
+  "item.verity.gloomkin_spawn_egg": "Gloomkin Spawn Egg"
 }

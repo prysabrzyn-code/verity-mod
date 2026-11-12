@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "asitems:item/edx_crimson_nickel_spear_i"
+  }
+}

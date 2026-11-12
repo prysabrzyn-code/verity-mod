@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/generated",
-  "textures": {
-    "layer0": "verity:item/mythicus_hs_seismic_bow"
-  }
-}

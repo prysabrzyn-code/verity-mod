@@ -3,21 +3,21 @@ loaderVersion = "[47,)"
 license = "All rights reserved"
 
 [[mods]]
-modId = "verity"
+modId = "asitems"
 version = "${version}"
-displayName = "Verity"
+displayName = "A&S Items"
 description = '''
-Adds the Verity smiley mob that follows players around. Spawn it with the Verity Spawn Egg.
+Adds weapons and bows ported from the A&S add-on.
 '''
 
-[[dependencies.verity]]
+[[dependencies.asitems]]
 modId = "forge"
 mandatory = true
 versionRange = "[47,)"
 ordering = "NONE"
 side = "BOTH"
 
-[[dependencies.verity]]
+[[dependencies.asitems]]
 modId = "minecraft"
 mandatory = true
 versionRange = "[1.20.1,1.21)"

@@ -18,7 +18,7 @@ public final class AsItems {
     public static void init() {}
 
     private static void reg(String name, Supplier<? extends Item> supplier) {
-        ALL.add(VerityMod.ITEMS.register(name, supplier));
+        ALL.add(AsMod.ITEMS.register(name, supplier));
     }
 
     static {

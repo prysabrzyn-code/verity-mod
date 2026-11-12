@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "asitems:item/mythicus_hs_straw_bow"
+  }
+}

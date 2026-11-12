@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/generated",
+  "textures": {
+    "layer0": "asitems:item/megaverse_carbon_steel_ball_grenade"
+  }
+}

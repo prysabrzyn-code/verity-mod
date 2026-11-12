@@ -1,6 +1,0 @@
-{
-  "parent": "minecraft:item/handheld",
-  "textures": {
-    "layer0": "verity:item/edx_warped_nickel_spear_i"
-  }
-}

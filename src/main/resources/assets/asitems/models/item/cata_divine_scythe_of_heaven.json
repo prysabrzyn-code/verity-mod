@@ -1,0 +1,6 @@
+{
+  "parent": "minecraft:item/handheld",
+  "textures": {
+    "layer0": "asitems:item/cata_divine_scythe_of_heaven"
+  }
+}

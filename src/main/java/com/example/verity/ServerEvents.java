@@ -4,6 +4,7 @@ import net.minecraft.core.BlockPos;
 import net.minecraft.server.level.ServerPlayer;
 import net.minecraft.world.level.Level;
 import net.minecraft.world.level.levelgen.Heightmap;
+import net.minecraftforge.event.ServerChatEvent;
 import net.minecraftforge.event.entity.player.PlayerEvent;
 import net.minecraftforge.eventbus.api.SubscribeEvent;
 import net.minecraftforge.fml.common.Mod;
@@ -12,6 +13,12 @@ import net.minecraftforge.fml.common.Mod;
 public class ServerEvents {
 
     private static final String GIVEN_KEY = "verity_box_given";
+
+    /** Typing "ویریتی ..." near a Verity sends the message to the chat model. */
+    @SubscribeEvent
+    public static void onChat(ServerChatEvent event) {
+        VerityChat.onChat(event);
+    }
 
     /** The first time a player joins, a cardboard box appears two blocks in front of them. */
     @SubscribeEvent

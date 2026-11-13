@@ -41,15 +41,21 @@ public final class OpenRouterClient {
         }
     }
 
+    /** One-shot prompt, kept for the right-click greeting. */
     public static CompletableFuture<String> ask(String apiKey, String prompt) {
-        JsonObject body = new JsonObject();
-        body.addProperty("model", MODEL);
-        body.addProperty("max_tokens", 80);
         JsonArray messages = new JsonArray();
         JsonObject message = new JsonObject();
         message.addProperty("role", "user");
         message.addProperty("content", prompt);
         messages.add(message);
+        return askMessages(apiKey, messages, 80);
+    }
+
+    /** Sends a full message list (system/user/assistant turns) and returns the reply text. */
+    public static CompletableFuture<String> askMessages(String apiKey, JsonArray messages, int maxTokens) {
+        JsonObject body = new JsonObject();
+        body.addProperty("model", MODEL);
+        body.addProperty("max_tokens", maxTokens);
         body.add("messages", messages);
 
         HttpRequest request = HttpRequest.newBuilder(URI.create(ENDPOINT))

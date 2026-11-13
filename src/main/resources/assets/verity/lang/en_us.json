@@ -1,5 +1,7 @@
 {
   "entity.verity.verity": "Verity",
+  "key.verity.talk": "Hold to talk to Verity",
+  "key.categories.verity": "Verity",
   "item.verity.verity_spawn_egg": "Verity Spawn Egg",
   "block.verity.cardboard_box": "Cardboard Box",
   "item.verity.cardboard_box": "Cardboard Box",

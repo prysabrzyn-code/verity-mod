@@ -70,7 +70,7 @@ public class VerityMod {
             () -> new ArtifactItem(new Item.Properties(), MobEffects.REGENERATION, MobEffects.DAMAGE_RESISTANCE));
 
     public static final RegistryObject<Block> CARDBOARD_BOX = BLOCKS.register("cardboard_box",
-            () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+            () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS).noOcclusion()));
 
     public static final RegistryObject<Item> CARDBOARD_BOX_ITEM = ITEMS.register("cardboard_box",
             () -> new BlockItem(CARDBOARD_BOX.get(), new Item.Properties()));

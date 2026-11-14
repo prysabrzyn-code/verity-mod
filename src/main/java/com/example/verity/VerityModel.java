@@ -33,7 +33,22 @@ public class VerityModel extends EntityModel<VerityEntity> {
             float r = radius[i];
             ball.addBox(-r, -8.0F + i, -r, r * 2.0F, 1.0F, r * 2.0F);
         }
-        root.addOrReplaceChild("body", ball, PartPose.offset(0.0F, 24.0F, 0.0F));
+        PartDefinition body = root.addOrReplaceChild("body", ball, PartPose.offset(0.0F, 24.0F, 0.0F));
+        // Black hat sitting on top of the ball (y from -12 to -8 in body space)
+        body.addOrReplaceChild("hat",
+                CubeListBuilder.create().texOffs(0, 16)
+                        .addBox(-3.0F, -12.0F, -3.0F, 6.0F, 4.0F, 6.0F),
+                PartPose.ZERO);
+        // Dark sunglasses bar across the front of the eyes
+        body.addOrReplaceChild("sunglasses",
+                CubeListBuilder.create().texOffs(0, 30)
+                        .addBox(-3.5F, -5.0F, -4.8F, 7.0F, 1.5F, 1.0F),
+                PartPose.ZERO);
+        // Brown moustache under the sunglasses
+        body.addOrReplaceChild("moustache",
+                CubeListBuilder.create().texOffs(0, 36)
+                        .addBox(-2.5F, -2.5F, -4.8F, 5.0F, 1.5F, 1.0F),
+                PartPose.ZERO);
         return LayerDefinition.create(mesh, 64, 64);
     }
 

@@ -26,11 +26,14 @@ public class VerityModel extends EntityModel<VerityEntity> {
     public static LayerDefinition createBodyLayer() {
         MeshDefinition mesh = new MeshDefinition();
         PartDefinition root = mesh.getRoot();
-        // Approximation of a ball: a single 8x8x8 cube standing on the ground.
-        root.addOrReplaceChild("body",
-                CubeListBuilder.create().texOffs(0, 0)
-                        .addBox(-4.0F, -8.0F, -4.0F, 8.0F, 8.0F, 8.0F),
-                PartPose.offset(0.0F, 24.0F, 0.0F));
+        // Round ball standing on the ground: 8 stacked 1-unit layers, radius 4 at the centre.
+        CubeListBuilder ball = CubeListBuilder.create().texOffs(0, 0);
+        int[] radius = {2, 3, 4, 4, 4, 4, 3, 2};
+        for (int i = 0; i < radius.length; i++) {
+            float r = radius[i];
+            ball.addBox(-r, -8.0F + i, -r, r * 2.0F, 1.0F, r * 2.0F);
+        }
+        root.addOrReplaceChild("body", ball, PartPose.offset(0.0F, 24.0F, 0.0F));
         return LayerDefinition.create(mesh, 64, 64);
     }
 

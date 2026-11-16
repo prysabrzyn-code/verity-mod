@@ -1,10 +1,13 @@
 package com.example.verity;
 
+import net.minecraft.resources.ResourceLocation;
+import net.minecraft.sounds.SoundEvent;
 import net.minecraft.world.entity.EntityType;
 import net.minecraft.world.entity.MobCategory;
 import net.minecraft.world.effect.MobEffects;
 import net.minecraft.world.entity.monster.Zombie;
 import net.minecraft.world.item.BlockItem;
+import net.minecraft.world.food.FoodProperties;
 import net.minecraft.world.item.CreativeModeTabs;
 import net.minecraft.world.item.Item;
 import net.minecraft.world.level.block.Block;
@@ -30,6 +33,33 @@ public class VerityMod {
             DeferredRegister.create(ForgeRegistries.BLOCKS, MODID);
     public static final DeferredRegister<Item> ITEMS =
             DeferredRegister.create(ForgeRegistries.ITEMS, MODID);
+    public static final DeferredRegister<SoundEvent> SOUNDS =
+            DeferredRegister.create(ForgeRegistries.SOUND_EVENTS, MODID);
+
+    // ---- Cherry the dog ----
+    public static final RegistryObject<SoundEvent> CHERRY_BARK = SOUNDS.register("cherry_bark",
+            () -> SoundEvent.createVariableRangeEvent(new ResourceLocation(MODID, "cherry_bark")));
+
+    public static final RegistryObject<EntityType<CherryEntity>> CHERRY = ENTITY_TYPES.register("cherry_dog",
+            () -> EntityType.Builder.of(CherryEntity::new, MobCategory.CREATURE)
+                    .sized(0.6F, 0.9F)
+                    .build("cherry_dog"));
+
+    public static final RegistryObject<EntityType<CherryMonsterEntity>> CHERRY_MONSTER =
+            ENTITY_TYPES.register("cherry_monster",
+                    () -> EntityType.Builder.of(CherryMonsterEntity::new, MobCategory.MONSTER)
+                            .sized(0.6F, 0.9F)
+                            .build("cherry_monster"));
+
+    public static final RegistryObject<Item> CHERRY_SPAWN_EGG = ITEMS.register("cherry_spawn_egg",
+            () -> new ForgeSpawnEggItem(CHERRY, 0xEFEDE6, 0xC81E1E, new Item.Properties()));
+
+    public static final RegistryObject<Item> CHERRY_TREAT = ITEMS.register("cherry_treat",
+            () -> new Item(new Item.Properties().food(
+                    new FoodProperties.Builder().nutrition(4).saturationMod(0.3F).build())));
+
+    public static final RegistryObject<Item> CHERRY_COLLAR = ITEMS.register("cherry_collar",
+            () -> new Item(new Item.Properties().stacksTo(1)));
 
     public static final RegistryObject<EntityType<VerityEntity>> VERITY = ENTITY_TYPES.register("verity",
             () -> EntityType.Builder.of(VerityEntity::new, MobCategory.CREATURE)
@@ -81,6 +111,7 @@ public class VerityMod {
         ENTITY_TYPES.register(modBus);
         BLOCKS.register(modBus);
         ITEMS.register(modBus);
+        SOUNDS.register(modBus);
         modBus.addListener(this::onEntityAttributes);
         modBus.addListener(this::onBuildCreativeTabs);
     }
@@ -89,6 +120,8 @@ public class VerityMod {
         event.put(VERITY.get(), VerityEntity.createAttributes().build());
         event.put(GLOOMKIN.get(), GloomkinEntity.createAttributes().build());
         event.put(ASHWALKER.get(), Zombie.createAttributes().build());
+        event.put(CHERRY.get(), CherryEntity.createAttributes().build());
+        event.put(CHERRY_MONSTER.get(), CherryMonsterEntity.createAttributes().build());
     }
 
     private void onBuildCreativeTabs(BuildCreativeModeTabContentsEvent event) {
@@ -96,6 +129,10 @@ public class VerityMod {
             event.accept(VERITY_SPAWN_EGG);
             event.accept(GLOOMKIN_SPAWN_EGG);
             event.accept(ASHWALKER_SPAWN_EGG);
+            event.accept(CHERRY_SPAWN_EGG);
+        }
+        if (event.getTabKey() == CreativeModeTabs.FOOD_AND_DRINKS) {
+            event.accept(CHERRY_TREAT);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);
@@ -107,6 +144,7 @@ public class VerityMod {
         }
         if (event.getTabKey() == CreativeModeTabs.TOOLS_AND_UTILITIES) {
             event.accept(SHIFT_WATCH);
+            event.accept(CHERRY_COLLAR);
         }
         if (event.getTabKey() == CreativeModeTabs.COMBAT) {
             AsItems.ALL.forEach(event::accept);

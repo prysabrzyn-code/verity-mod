@@ -90,5 +90,10 @@
   "item.verity.ashwalker_spawn_egg": "Ashwalker Spawn Egg",
   "item.verity.glow_shard": "Glow Shard",
   "item.verity.ember_core": "Ember Core",
-  "item.verity.frozen_eye": "Frozen Eye"
+  "item.verity.frozen_eye": "Frozen Eye",
+  "entity.verity.cherry_dog": "Cherry",
+  "entity.verity.cherry_monster": "Cherry (Monster)",
+  "item.verity.cherry_spawn_egg": "Cherry Spawn Egg",
+  "item.verity.cherry_treat": "Cherry Treat",
+  "item.verity.cherry_collar": "Cherry Collar"
 }

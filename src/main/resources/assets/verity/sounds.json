@@ -1,0 +1,7 @@
+{
+  "cherry_bark": {
+    "sounds": [
+      { "name": "verity:cherry_bark", "stream": false }
+    ]
+  }
+}

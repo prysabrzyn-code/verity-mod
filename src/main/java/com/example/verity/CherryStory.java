@@ -39,11 +39,14 @@ public final class CherryStory {
     public static final int STAGE_HUNT = 5;
     public static final int STAGE_END = 6;
 
-    private static final int BONES_FOR_QUEST = 64;
-    private static final int BONES_TO_BEFRIEND = 16;
+    /** Test build: quick story (1 bone, no Tom, no waiting). Set to false for the full story. */
+    private static final boolean TEST_MODE = true;
+
+    private static final int BONES_FOR_QUEST = TEST_MODE ? 1 : 64;
+    private static final int BONES_TO_BEFRIEND = TEST_MODE ? 1 : 16;
     private static final long DAY_TICKS = 24000L;
-    private static final double DAYS_TO_MONSTER = 2.0D;
-    private static final double DAYS_TO_HUNT = 2.0D;
+    private static final double DAYS_TO_MONSTER = TEST_MODE ? 0.0D : 2.0D;
+    private static final double DAYS_TO_HUNT = TEST_MODE ? 0.0D : 2.0D;
     private static final double SEARCH_RANGE = 128.0D;
 
     private static final String KEY_STAGE = "cherry_stage";
@@ -184,6 +187,11 @@ public final class CherryStory {
     }
 
     private static void checkTom(ServerPlayer player, ServerLevel level) {
+        if (TEST_MODE) {
+            setStage(player, STAGE_RAGE);
+            say(player, "(Test) Tom skipped.");
+            return;
+        }
         for (CherryMonsterEntity monster : level.getEntitiesOfClass(CherryMonsterEntity.class,
                 player.getBoundingBox().inflate(SEARCH_RANGE))) {
             for (Wolf wolf : level.getEntitiesOfClass(Wolf.class, monster.getBoundingBox().inflate(16.0D))) {

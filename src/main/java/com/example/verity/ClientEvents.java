@@ -11,12 +11,14 @@ public class ClientEvents {
     @SubscribeEvent
     public static void registerLayers(EntityRenderersEvent.RegisterLayerDefinitions event) {
         event.registerLayerDefinition(VerityModel.LAYER, VerityModel::createBodyLayer);
+        event.registerLayerDefinition(FalsityModel.LAYER, FalsityModel::createBodyLayer);
         event.registerLayerDefinition(GloomkinModel.LAYER, GloomkinModel::createBodyLayer);
     }
 
     @SubscribeEvent
     public static void registerRenderers(EntityRenderersEvent.RegisterRenderers event) {
         event.registerEntityRenderer(VerityMod.VERITY.get(), VerityRenderer::new);
+        event.registerEntityRenderer(VerityMod.FALSITY.get(), FalsityRenderer::new);
         event.registerEntityRenderer(VerityMod.GLOOMKIN.get(), GloomkinRenderer::new);
         event.registerEntityRenderer(VerityMod.ASHWALKER.get(), AshwalkerRenderer::new);
     }

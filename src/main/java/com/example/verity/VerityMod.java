@@ -69,8 +69,21 @@ public class VerityMod {
     public static final RegistryObject<Item> FROZEN_EYE = ITEMS.register("frozen_eye",
             () -> new ArtifactItem(new Item.Properties(), MobEffects.REGENERATION, MobEffects.DAMAGE_RESISTANCE));
 
+    public static final RegistryObject<EntityType<FalsityEntity>> FALSITY = ENTITY_TYPES.register("falsity",
+            () -> EntityType.Builder.of(FalsityEntity::new, MobCategory.CREATURE)
+                    .sized(0.9F, 0.9F)
+                    .build("falsity"));
+
+    // Verity box (right-click -> Verity appears with the word "حقیقت")
     public static final RegistryObject<Block> CARDBOARD_BOX = BLOCKS.register("cardboard_box",
-            () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS)));
+            () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS), VERITY, "حقیقت"));
+
+    // Falsity box (right-click -> Falsity appears with the word "دروغ")
+    public static final RegistryObject<Block> CARDBOARD_BOX_FALSITY = BLOCKS.register("cardboard_box_falsity",
+            () -> new CardboardBoxBlock(BlockBehaviour.Properties.copy(Blocks.OAK_PLANKS), FALSITY, "دروغ"));
+
+    public static final RegistryObject<Item> CARDBOARD_BOX_FALSITY_ITEM = ITEMS.register("cardboard_box_falsity",
+            () -> new BlockItem(CARDBOARD_BOX_FALSITY.get(), new Item.Properties()));
 
     public static final RegistryObject<Item> CARDBOARD_BOX_ITEM = ITEMS.register("cardboard_box",
             () -> new BlockItem(CARDBOARD_BOX.get(), new Item.Properties()));
@@ -87,6 +100,7 @@ public class VerityMod {
 
     private void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(VERITY.get(), VerityEntity.createAttributes().build());
+        event.put(FALSITY.get(), FalsityEntity.createAttributes().build());
         event.put(GLOOMKIN.get(), GloomkinEntity.createAttributes().build());
         event.put(ASHWALKER.get(), Zombie.createAttributes().build());
     }
@@ -99,6 +113,7 @@ public class VerityMod {
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);
+            event.accept(CARDBOARD_BOX_FALSITY_ITEM);
         }
         if (event.getTabKey() == CreativeModeTabs.INGREDIENTS) {
             event.accept(GLOW_SHARD);

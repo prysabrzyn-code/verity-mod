@@ -90,5 +90,8 @@
   "item.verity.ashwalker_spawn_egg": "Ashwalker Spawn Egg",
   "item.verity.glow_shard": "Glow Shard",
   "item.verity.ember_core": "Ember Core",
-  "item.verity.frozen_eye": "Frozen Eye"
+  "item.verity.frozen_eye": "Frozen Eye",
+  "entity.verity.falsity": "Falsity",
+  "block.verity.cardboard_box_falsity": "Cardboard Box (Falsity)",
+  "item.verity.cardboard_box_falsity": "Cardboard Box (Falsity)"
 }

@@ -49,6 +49,19 @@ public class VerityMod {
     public static final RegistryObject<Item> GLOOMKIN_SPAWN_EGG = ITEMS.register("gloomkin_spawn_egg",
             () -> new ForgeSpawnEggItem(GLOOMKIN, 0x3A2A4A, 0xFF1A1A, new Item.Properties()));
 
+    public static final RegistryObject<EntityType<ChreyEntity>> CHREY = ENTITY_TYPES.register("chrey",
+            () -> EntityType.Builder.of(ChreyEntity::new, MobCategory.CREATURE)
+                    .sized(0.6F, 0.9F)
+                    .build("chrey"));
+
+    public static final RegistryObject<EntityType<ChreyBeastEntity>> CHREY_BEAST = ENTITY_TYPES.register("chrey_beast",
+            () -> EntityType.Builder.of(ChreyBeastEntity::new, MobCategory.MONSTER)
+                    .sized(0.8F, 1.0F)
+                    .build("chrey_beast"));
+
+    public static final RegistryObject<Item> CHREY_SPAWN_EGG = ITEMS.register("chrey_spawn_egg",
+            () -> new ForgeSpawnEggItem(CHREY, 0xF2F0EA, 0xE02020, new Item.Properties()));
+
     public static final RegistryObject<Item> SHIFT_WATCH = ITEMS.register("shift_watch",
             () -> new ShiftWatchItem(new Item.Properties()));
 
@@ -101,6 +114,8 @@ public class VerityMod {
     private void onEntityAttributes(EntityAttributeCreationEvent event) {
         event.put(VERITY.get(), VerityEntity.createAttributes().build());
         event.put(FALSITY.get(), FalsityEntity.createAttributes().build());
+        event.put(CHREY.get(), ChreyEntity.createAttributes().build());
+        event.put(CHREY_BEAST.get(), ChreyBeastEntity.createAttributes().build());
         event.put(GLOOMKIN.get(), GloomkinEntity.createAttributes().build());
         event.put(ASHWALKER.get(), Zombie.createAttributes().build());
     }
@@ -110,6 +125,7 @@ public class VerityMod {
             event.accept(VERITY_SPAWN_EGG);
             event.accept(GLOOMKIN_SPAWN_EGG);
             event.accept(ASHWALKER_SPAWN_EGG);
+            event.accept(CHREY_SPAWN_EGG);
         }
         if (event.getTabKey() == CreativeModeTabs.BUILDING_BLOCKS) {
             event.accept(CARDBOARD_BOX_ITEM);

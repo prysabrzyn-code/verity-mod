@@ -93,5 +93,8 @@
   "item.verity.frozen_eye": "Frozen Eye",
   "entity.verity.falsity": "Falsity",
   "block.verity.cardboard_box_falsity": "Cardboard Box (Falsity)",
-  "item.verity.cardboard_box_falsity": "Cardboard Box (Falsity)"
+  "item.verity.cardboard_box_falsity": "Cardboard Box (Falsity)",
+  "entity.verity.chrey": "Chery",
+  "entity.verity.chrey_beast": "Chery Beast",
+  "item.verity.chrey_spawn_egg": "Chery Spawn Egg"
 }

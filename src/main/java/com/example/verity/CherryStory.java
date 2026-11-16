@@ -225,7 +225,7 @@ public final class CherryStory {
     @SubscribeEvent
     public static void onChat(ServerChatEvent event) {
         ServerPlayer player = event.getPlayer();
-        String text = event.getMessage().trim().toLowerCase(Locale.ROOT);
+        String text = event.getRawText().trim().toLowerCase(Locale.ROOT);
 
         if (text.equals("!reset")) {
             event.setCanceled(true);
